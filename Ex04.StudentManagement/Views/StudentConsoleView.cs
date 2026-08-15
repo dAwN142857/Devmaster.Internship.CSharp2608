@@ -1,184 +1,78 @@
 ﻿using Ex04.StudentManagement.Enums;
-using Ex04.StudentManagement.Helpers;
 using Ex04.StudentManagement.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ex04.StudentManagement.Services;
+using Ex04.StudentManagement.Validators;
 
 namespace Ex04.StudentManagement.Views
 {
     public class StudentConsoleView
     {
-        public Student InputStudent(string studentId, bool isUpdate = false)
+        private readonly StudentService _service;
+
+        public StudentConsoleView(StudentService service)
         {
-            Student student = new Student();
-            Console.WriteLine();
-            Console.WriteLine(
-                isUpdate
-                    ? "===== CẬP NHẬT SINH VIÊN ====="
-                    : "===== THÊM SINH VIÊN =====");
-            student.studentId = studentId;
-            student.fullName =
-                InputHelper.ReadNonEmptyString(
-                    "Họ tên: ");
-
-            student.dateOfBirth =
-                InputHelper.ReadDate(
-                    "Ngày sinh (dd/MM/yyyy): ",
-                    new DateTime(1950, 1, 1),
-                    DateTime.Today);
-
-            student.gender =
-                InputHelper.ReadGender();
-
-            student.email =
-                InputHelper.ReadEmail("Email: ");
-
-            student.phoneNumber =
-                InputHelper.ReadPhoneNumber(
-                    "Số điện thoại: ");
-
-            student.major =
-                InputHelper.ReadNonEmptyString(
-                    "Ngành học: ");
-
-            student.gpa =
-                InputHelper.ReadDouble(
-                    "Điểm trung bình: ",
-                    0,
-                    10);
-
-            student.status =
-                InputHelper.ReadStudentStatus();
-
-
-            return student;
+            _service = service;
         }
-        public void DisplayStudent(Student student)
+
+        public void InputNewStudent()
         {
-            Console.WriteLine(
-                $"Mã SV       : {student.studentId}");
-
-            Console.WriteLine(
-                $"Họ tên      : {student.fullName}");
-
-            Console.WriteLine(
-                $"Ngày sinh   : {student.dateOfBirth:dd/MM/yyyy}");
-
-            Console.WriteLine(
-                $"Giới tính   : {GetGenderName(student.gender)}");
-
-            Console.WriteLine(
-                $"Email       : {student.email}");
-            
-            Console.WriteLine(
-                $"Điện thoại  : {student.phoneNumber}");
-
-            Console.WriteLine(
-                $"Ngành       : {student.major}");
-
-            Console.WriteLine(
-                $"GPA         : {student.gpa:F2}");
-
-            Console.WriteLine(
-                $"Trạng thái  : {GetStatusName(student.status)}");
-        }
-        private string GetGenderName(Gender gender)
-        {
-            return gender switch
+            Console.WriteLine("\n--- THEM SINH VIEN MOI ---");
+            string id;
+            while (true)
             {
-                Gender.Male => "Nam",
-                Gender.Female => "Nữ",
-                Gender.Other => "Khác",
-                _ => "Không xác định"
+                id = InputHelper.ReadString("Ma sinh vien: ");
+                if (string.IsNullOrWhiteSpace(id)) Console.WriteLine("Ma SV khong duoc de rong!");
+                else if (_service.FindById(id) != null) Console.WriteLine("Ma SV da ton tai!");
+                else break;
+            }
+
+            string name = InputHelper.ReadString("Ho ten: ");
+            DateTime dob = InputHelper.ReadDateTime("Ngay sinh (dd/MM/yyyy): ");
+            Gender gender = (Gender)InputHelper.ReadInt("Gioi tinh (1: Male, 2: Female, 3: Other): ", 1, 3);
+
+            string email;
+            while (true)
+            {
+                email = InputHelper.ReadString("Email: ");
+                if (StudentValidator.IsValidEmail(email)) break;
+                Console.WriteLine("Email khong hop le!");
+            }
+
+            string phone = InputHelper.ReadString("So dien thoại: ");
+            string major = InputHelper.ReadString("Nganh hoc: ");
+            double gpa = InputHelper.ReadDouble("Diem trung binh (0.0 - 10.0): ", 0.0, 10.0);
+            StudentStatus status = (StudentStatus)InputHelper.ReadInt("Trang thai (1: Active, 2: Inactive, 3: Graduated, 4: Suspended): ", 1, 4);
+
+            var st = new Student
+            {
+                studentId = id,
+                fullName = name,
+                dateOfBirth = dob,
+                gender = gender,
+                email = email,
+                phoneNumber = phone,
+                major = major,
+                gpa = gpa,
+                status = status
             };
-        }
-        private string GetStatusName(StudentStatus status)
-        {
-            return status switch
-            {
-                StudentStatus.Studying => "Đang học",
-                StudentStatus.Reserved => "Bảo lưu",
-                StudentStatus.Graduated => "Đã tốt nghiệp",
-                StudentStatus.DroppedOut => "Thôi học",
-                _ => "Không xác định"
-            };
-        }
-        public void DisplayStudents(
-        IEnumerable<Student> students)
-        {
-            List<Student> list = students.ToList();
 
-            if (list.Count == 0)
+            _service.Add(st);
+            Console.WriteLine("=> Them sinh vien thanh cong!");
+        }
+
+        public void DisplayList(List<Student> list)
+        {
+            if (!list.Any())
             {
-                Console.WriteLine("Không có dữ liệu.");
+                Console.WriteLine("Danh sach trong!");
                 return;
             }
-
-            Console.WriteLine(
-                "-------------------------------------------------------------------------------------------------------------");
-
-            Console.WriteLine(
-                $"{"Mã",-8} | {"Họ tên",-25} | {"Ngày sinh",-12} | " +
-                $"{"Email",-25} | {"Ngành",-20} | {"GPA",-6} | {"Trạng thái"}");
-
-            Console.WriteLine(
-                "-------------------------------------------------------------------------------------------------------------");
-
-            foreach (Student student in list)
+            Console.WriteLine(new string('-', 100));
+            foreach (var st in list)
             {
-                Console.WriteLine(
-                    $"{student.studentId,-8} | " +
-                    $"{student.fullName,-25} | " +
-                    $"{student.dateOfBirth:dd/MM/yyyy,-12} | " +
-                    $"{student.email,-25} | " +
-                    $"{student.major,-20} | " +
-                    $"{student.gpa,-6:F2} | " +
-                    $"{GetStatusName(student.status)}");
+                Console.WriteLine(st.ToString());
             }
-
-            Console.WriteLine(
-                "-------------------------------------------------------------------------------------------------------------");
-
-            Console.WriteLine(
-                $"Tổng số sinh viên: {list.Count}");
-        }
-
-
-        /// <summary>
-        /// Các phương thực phục vụ thống kê
-        /// </summary>
-        /// <param name="statistics"></param>
-        public void DisplayStatistics(Dictionary<string, int> statistics)
-        {
-            if (statistics.Count == 0)
-            {
-                Console.WriteLine("Không có dữ liệu.");
-                return;
-            }
-
-            foreach (var item in statistics)
-            {
-                Console.WriteLine(
-                    $"{item.Key,-30}: {item.Value}");
-            }
-        }
-
-        public void DisplayStatusStatistics(Dictionary<StudentStatus, int> statistics)
-        {
-            if (statistics.Count == 0)
-            {
-                Console.WriteLine("Không có dữ liệu.");
-                return;
-            }
-
-            foreach (var item in statistics)
-            {
-                Console.WriteLine(
-                    $"{GetStatusName(item.Key),-20}: {item.Value}");
-            }
+            Console.WriteLine(new string('-', 100));
         }
     }
 }
