@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+
+    var products = ViewData["products"] as List<TvcLesson03.Models.TvcProduct>;
+    var categories = ViewData["categories"] as List<TvcLesson03.Models.TvcCategory>;
+}
+
+<div class="row">
+    <!-- Danh mục -->
+    <div class="col-md-3">
+        <h3>DANH MỤC</h3>
+
+        <div class="list-group">
+            @foreach (var category in categories)
+            {
+                <a href="/TvcProduct/ProductsByCategory/@category.Id"
+                   class="list-group-item list-group-item-action">
+                    @category.Name
+                </a>
+            }
+        </div>
+    </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="col-md-9">
+        <h1>Danh sách sản phẩm</h1>
+
+        <div class="row">
+            @foreach (var item in products)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="~/images/@item.Image"
+                             class="card-img-top"
+                             style="height:220px; object-fit:cover;" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+
+                            <p>
+                                <del>Giá: @item.Price</del>
+                                <br />
+                                Giá: @item.SalePrice
+                            </p>
+
+                            <a href="/san-pham/chi-tiet/@item.Id" class="btn btn-success">
+                                Chi tiết
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
