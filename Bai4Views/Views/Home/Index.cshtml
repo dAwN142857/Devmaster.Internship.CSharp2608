@@ -1,0 +1,27 @@
+﻿@model List<Bai4Views.Models.Product>
+
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<!-- SẢN PHẨM MỚI NHẤT -->
+<div class="product-section">
+    <div class="section-title">
+        Sản phẩm mới nhất
+    </div>
+
+    <div class="products">
+
+        @foreach (var product in Model)
+        {
+            <div class="product">
+                <h3>@product.Name</h3>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<!-- SẢN PHẨM NỔI BẬT -->
+@await Component.InvokeAsync("HotProduct")

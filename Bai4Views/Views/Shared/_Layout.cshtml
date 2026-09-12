@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - DEMO LAB</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav class="menu">
+        <div class="logo">DEMO LAB</div>
+
+        <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+        <a asp-controller="Home" asp-action="Privacy">Giới thiệu</a>
+        <a href="#">Liên hệ</a>
+        <a href="#">Sản phẩm</a>
+    </nav>
+
+
+    <!-- NỘI DUNG -->
+    <div class="container">
+
+        <div class="left">
+
+            <partial name="_CategoryPartial" />
+            
+
+        </div>
+
+        <div class="right">
+
+            @RenderBody()
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div>
+            <h3>GIỚI THIỆU</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Debitis ab suscipit deserunt mollitia reiciendis.
+            </p>
+        </div>
+
+        <div>
+            <h3>LIÊN HỆ</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Dolorem, aliquid commodi ut esse eos voluptatem.
+            </p>
+        </div>
+
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
