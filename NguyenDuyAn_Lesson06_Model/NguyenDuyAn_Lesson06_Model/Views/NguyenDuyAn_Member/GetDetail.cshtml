@@ -1,0 +1,23 @@
+﻿@model NguyenDuyAn_Lesson06_Model.Models.NguyenDuyAn_Member
+
+@{
+    ViewData["Title"] = "Chi tiết thành viên";
+}
+
+<div class="container mt-4">
+    <h2>THÔNG TIN CHI TIẾT THÀNH VIÊN</h2>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Mã thành viên:</dt>
+        <dd class="col-sm-9">@Model.NguyenDuyAn_MemberID</dd>
+
+        <dt class="col-sm-3">Tên tài khoản:</dt>
+        <dd class="col-sm-9">@Model.NguyenDuyAn_Username</dd>
+
+        <dt class="col-sm-3">Họ và tên:</dt>
+        <dd class="col-sm-9">@Model.NguyenDuyAn_FullName</dd>
+
+        <dt class="col-sm-3">Email:</dt>
+        <dd class="col-sm-9">@Model.NguyenDuyAn_Email</dd>
+    </dl>
+</div>

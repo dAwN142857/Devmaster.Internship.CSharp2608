@@ -1,0 +1,37 @@
+﻿@model NguyenDuyAn_Lesson06_Model.Models.NguyenDuyAn_Member
+
+@{
+    ViewData["Title"] = "Chỉnh sửa thành viên";
+}
+
+<div class="container mt-4">
+    <h2>CHỈNH SỬA THÔNG TIN THÀNH VIÊN</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit" method="post">
+                <!-- Thẻ hidden giữ lại ID của thành viên -->
+                <input type="hidden" asp-for="NguyenDuyAn_MemberID" />
+
+                <div class="mb-3">
+                    <label class="form-label">Tên tài khoản</label>
+                    <input asp-for="NguyenDuyAn_Username" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mật khẩu</label>
+                    <input asp-for="NguyenDuyAn_Password" type="password" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Họ và tên</label>
+                    <input asp-for="NguyenDuyAn_FullName" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input asp-for="NguyenDuyAn_Email" type="email" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+            </form>
+        </div>
+    </div>
+</div>

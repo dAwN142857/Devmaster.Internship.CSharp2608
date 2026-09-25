@@ -1,0 +1,38 @@
+﻿@model IEnumerable<NguyenDuyAn_Lesson06_Model.Models.NguyenDuyAn_Member>
+
+@{
+    ViewData["Title"] = "Danh sách thành viên";
+}
+
+<div class="container mt-4">
+    <h2>DANH SÁCH THÀNH VIÊN</h2>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Thêm mới thành viên</a>
+    </p>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã TV</th>
+                <th>Tên tài khoản</th>
+                <th>Họ và tên</th>
+                <th>Email</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NguyenDuyAn_MemberID</td>
+                    <td>@item.NguyenDuyAn_Username</td>
+                    <td>@item.NguyenDuyAn_FullName</td>
+                    <td>@item.NguyenDuyAn_Email</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.NguyenDuyAn_MemberID" class="btn btn-sm btn-warning">Sửa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
