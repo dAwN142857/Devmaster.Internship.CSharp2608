@@ -1,0 +1,16 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    // Việt hóa thông báo mặc định của jQuery Validation
+    $.extend($.validator.messages, {
+        required: "Vui lòng nhập thông tin này.",
+        number: "Vui lòng nhập một số hợp lệ.",
+        digits: "Vui lòng chỉ nhập chữ số.",
+        min: $.validator.format("Giá trị phải lớn hơn hoặc bằng {0}."),
+        max: $.validator.format("Giá trị phải nhỏ hơn hoặc bằng {0}."),
+        range: $.validator.format("Giá trị phải nằm trong khoảng từ {0} đến {1}."),
+        minlength: $.validator.format("Vui lòng nhập ít nhất {0} ký tự."),
+        maxlength: $.validator.format("Vui lòng không nhập quá {0} ký tự.")
+    });
+</script>

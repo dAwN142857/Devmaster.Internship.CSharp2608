@@ -1,0 +1,22 @@
+@model Product
+@{ ViewData["Title"] = "Chi tiết sản phẩm"; }
+
+<h2>Chi tiết sản phẩm</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <img src="~/products/@Model.Image" alt="@Model.Name" class="img-fluid rounded border" />
+    </div>
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-3">Mã</dt><dd class="col-sm-9">@Model.Id</dd>
+            <dt class="col-sm-3">Tên sản phẩm</dt><dd class="col-sm-9">@Model.Name</dd>
+            <dt class="col-sm-3">Danh mục</dt><dd class="col-sm-9">@Model.Category?.Name</dd>
+            <dt class="col-sm-3">Giá</dt><dd class="col-sm-9">@Fmt.Vnd(Model.Price)</dd>
+            <dt class="col-sm-3">Giá khuyến mãi</dt><dd class="col-sm-9 text-danger">@Fmt.Vnd(Model.SalePrice)</dd>
+            <dt class="col-sm-3">Mô tả</dt><dd class="col-sm-9" style="white-space:pre-line">@Model.Description</dd>
+        </dl>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+</div>

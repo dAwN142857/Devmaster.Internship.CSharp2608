@@ -1,0 +1,23 @@
+@model Product
+@{ ViewData["Title"] = "Xóa sản phẩm"; }
+
+<h2>Xóa sản phẩm</h2>
+<div class="alert alert-warning">Bạn có chắc chắn muốn xóa sản phẩm này không?</div>
+<div class="row">
+    <div class="col-md-3 mb-3">
+        <img src="~/products/@Model.Image" alt="@Model.Name" class="img-fluid rounded border" />
+    </div>
+    <div class="col-md-9">
+        <dl class="row">
+            <dt class="col-sm-3">Tên sản phẩm</dt><dd class="col-sm-9">@Model.Name</dd>
+            <dt class="col-sm-3">Danh mục</dt><dd class="col-sm-9">@Model.Category?.Name</dd>
+            <dt class="col-sm-3">Giá</dt><dd class="col-sm-9">@Fmt.Vnd(Model.Price)</dd>
+            <dt class="col-sm-3">Giá khuyến mãi</dt><dd class="col-sm-9">@Fmt.Vnd(Model.SalePrice)</dd>
+        </dl>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+            <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+</div>
