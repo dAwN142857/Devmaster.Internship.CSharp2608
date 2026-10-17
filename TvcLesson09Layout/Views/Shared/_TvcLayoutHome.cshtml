@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/LayoutHome.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a asp-area="" asp-controller="Products" asp-action="Index">Danh sách sản phẩm</a></li>
+                <li><a asp-area="" asp-controller="Products" asp-action="Search">Tìm kiếm sản phẩm</a></li>
+                <li><a asp-area="" asp-controller="Products" asp-action="Hots">Sản phẩm  bán chạy</a></li>
+                <li><a asp-area="" asp-controller="Products" asp-action="About">Giới thiệu</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+            <div class="main">
+                @RenderBody()
+            </div>
+    </section>
+    
+    <footer>
+            <p>&copyright; 2026 - By @@Chung Trịnh</p>  
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script src="~/js/LayouyHome.js"></script>
+</body>
+</html>

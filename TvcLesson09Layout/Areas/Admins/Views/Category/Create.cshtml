@@ -1,0 +1,32 @@
+﻿@model TvcLesson09Layout.Areas.Admins.Models.Category
+
+@{
+    ViewData["Title"] = "Thêm danh mục";
+    Layout = "~/Areas/Admins/Views/Shared/_TvcLayoutAdmin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Thêm danh mục</h3>
+    </div>
+
+    <form asp-area="Admins" asp-controller="Category" asp-action="Create" method="post">
+        <div class="card-body">
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Tên danh mục</label>
+                <input asp-for="Name" class="form-control" placeholder="Nhập tên danh mục" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Mô tả</label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <a asp-area="Admins" asp-controller="Category" asp-action="Index" class="btn btn-secondary">Quay lại</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,100 @@
+﻿
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/adminlte.css" asp-append-version="true" />
+</head>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+
+        <nav class="app-header navbar navbar-expand bg-body">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admins/Dashboard/Index">
+                            <i class="bi bi-speedometer2"></i> Admin Panel
+                        </a>
+                    </li>
+                </ul>
+                <span class="navbar-text">Quản lý hệ thống</span>
+            </div>
+        </nav>
+
+        <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+            <div class="sidebar-brand">
+                <a href="/Admins/Dashboard/Index" class="brand-link">
+                    <span class="brand-text fw-light">AdminLTE 4</span>
+                </a>
+            </div>
+
+            <div class="sidebar-wrapper">
+                <nav class="mt-2">
+                    <ul class="nav sidebar-menu flex-column"
+                        data-lte-toggle="treeview" role="menu">
+
+                        <li class="nav-item">
+                            <a href="/Admins/Dashboard/Index" class="nav-link">
+                                <i class="nav-icon bi bi-speedometer"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/Admins/Category/Index" class="nav-link">
+                                <i class="nav-icon bi bi-tags"></i>
+                                <p>Category</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/Admins/Product/Index" class="nav-link">
+                                <i class="nav-icon bi bi-box-seam"></i>
+                                <p>Product</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/Admins/Banner/Index" class="nav-link">
+                                <i class="nav-icon bi bi-images"></i>
+                                <p>Banner</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/Admins/Blog/Index" class="nav-link">
+                                <i class="nav-icon bi bi-journal-text"></i>
+                                <p>Blog</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <div class="app-content">
+                <div class="container-fluid py-3">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <strong>AdminLTE 4</strong> - Trang quản trị
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/adminlte.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

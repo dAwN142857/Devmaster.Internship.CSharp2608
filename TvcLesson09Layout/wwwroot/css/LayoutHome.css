@@ -1,0 +1,47 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size:20px
+}
+
+header, section , footer  {
+    border:1px solid  #ccc;
+    margin:.5rem auto;
+    width: 80%;
+    padding:1rem;
+}
+nav {
+    background-color: #303043;
+    color: #fff;
+    padding: 10px;
+}
+ul, li {
+    list-style: none;
+}
+
+nav ul {
+    display: flex;
+    align-content: center;
+}
+nav ul li a {
+    display: block;
+    padding:.5rem 1rem;
+    text-decoration:none;
+    color:#fff
+
+}
+nav li:hover a{
+    color: yellow;
+}
+
+.main{
+    min-height:calc(100vh - 200px);
+}
+
+.active{
+    background:green;
+}
