@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Lab2.Models.Student>
+
+@{
+    ViewData["Title"] = "Student List";
+    Layout = "~/Views/Shared/MyLayoutHelper.cshtml";
+}
+
+<div class="container-fluid px-4 mt-3">
+<h2>List of Students</h2>
+
+<a href="/Admin/Student/Add" class="btn btn-primary">Create Student</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mã</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Ngành</th>
+            <th>Giới tính</th>
+            <th>Hệ ĐT</th>
+            <th>Địa chỉ</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.Name</td>
+                <td>@s.DateOfBorth.ToString("d")</td>
+                <td>
+                    @{
+                        string str = "";
+                        switch (s.Branch)
+                        {
+                            case Lab2.Models.Branch.IT:
+                                str = "CNTT";
+                                break;
+                            case Lab2.Models.Branch.BE:
+                                str = "Kinh tế";
+                                break;
+                            case Lab2.Models.Branch.CE:
+                                str = "Công trình";
+                                break;
+                            case Lab2.Models.Branch.EE:
+                                str = "Điện - Điện tử";
+                                break;
+                        }
+                    }
+                    @str
+                </td>
+                <td>@(s.Gender == Lab2.Models.Gender.Male ? "Nam" : "Nữ")</td>
+                <td>@(s.IsRegular ? "Chính quy" : "Phi chính quy")</td>
+                <td>@s.Address</td>
+                <td>@s.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+@section Scripts{
+    <script>
+        var table = document.querySelector("table");
+        table.onclick = function onTableClick() {
+            table.style = "background-color: yellow;"
+        }
+    </script>
+}
