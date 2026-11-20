@@ -1,0 +1,47 @@
+﻿@using NguyenDuyAn_241230651.Models
+@model IEnumerable<Sach>
+
+<main class="main">
+    <div class="container">
+
+        <div class="banner">
+            <img src="~/images/banner.jpg" alt="Banner" />
+        </div>
+
+        <div class="section-head">
+            <h3 id="tieuDe">NGUYỄN DUY AN</h3>
+            <a asp-controller="Home" asp-action="Create">
+                + Thêm sách mới
+            </a>
+            <select id="maTL">
+                <option value="0">Tất cả thể loại</option>
+                @foreach (var tl in (ViewBag.TheLoais as IEnumerable<TheLoai> ?? Enumerable.Empty<TheLoai>()))
+                {
+                    <option value="@tl.MaTl">@tl.TenTl</option>
+                }
+            </select>
+        </div>
+        <div id="dsSach">
+            <div class="grid">
+            @foreach (var item in Model ?? Enumerable.Empty<Sach>())
+            {
+                <div class="book-card">
+                    <a href="#">
+                        @if (!string.IsNullOrEmpty(item.Anh))
+                        {
+                            <img src="@Url.Content("~/images/" + item.Anh)" alt="@item.TenSach" />
+                        }
+                    </a>
+
+                    <h2>@item.TenSach</h2>
+
+                    <div class="book-foot">
+                        <span class="price">@item.Gia</span>
+                        <button class="btn-buy">Thêm vào giỏ</button>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</main>

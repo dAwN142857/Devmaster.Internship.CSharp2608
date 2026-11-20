@@ -1,0 +1,42 @@
+﻿@model NguyenDuyAn_241230651.Models.Sach
+
+@{
+    ViewData["Title"] = "Thêm sách";
+}
+
+<h2>THÊM SÁCH MỚI</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Thể loại</label>
+        <select asp-for="MaTl"
+                asp-items="@(new SelectList(ViewBag.TheLoais, "MaTl", "TenTl"))">
+            <option value="">-- Chọn thể loại --</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Tên sách</label>
+        <input asp-for="TenSach" />
+        <span asp-validation-for="TenSach"></span>
+    </div>
+
+    <div>
+        <label>Giá</label>
+        <input asp-for="Gia" />
+        <span asp-validation-for="Gia"></span>
+    </div>
+
+    <div>
+        <label>Ảnh</label>
+        <input asp-for="Anh" />
+        <span asp-validation-for="Anh"></span>
+    </div>
+
+    <button type="submit">Create</button>
+    <a asp-action="Index">Quay lại</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

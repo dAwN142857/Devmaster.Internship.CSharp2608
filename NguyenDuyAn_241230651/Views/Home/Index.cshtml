@@ -1,0 +1,37 @@
+﻿@using NguyenDuyAn_241230651.Models
+@model IEnumerable<Sach>
+
+@{
+    ViewData["Title"] = "Nguyễn Duy An";
+}
+
+@await Html.PartialAsync(
+    "~/Views/Shared/NguyenDuyAn_MainContent.cshtml", Model)
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $("#maTL").change(function() {
+                var maTL = $(this).val();
+
+                $.ajax({
+                    url: '/Home/LocSach',
+                    type: 'GET',
+                    data: { maTL: maTL },
+                    success: function(result) {
+                        $("#dsSach").html(result);
+
+                        if (maTL == 0) {
+                            $("#tieuDe").text("NGUYỄN DUY AN");
+                        } else {
+                            $("#tieuDe").text("SÁCH THEO THỂ LOẠI");
+                        }
+                    },
+                    error: function() {
+                        alert("Lỗi khi tải danh sách sách!");
+                    }
+                });
+            });
+        });
+    </script>
+}

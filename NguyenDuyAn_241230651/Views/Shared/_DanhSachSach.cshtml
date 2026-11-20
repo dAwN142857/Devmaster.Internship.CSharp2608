@@ -1,0 +1,24 @@
+﻿@using NguyenDuyAn_241230651.Models
+@model IEnumerable<Sach>
+
+<div class="grid">
+    @foreach (var item in Model)
+    {
+        <div class="book-card">
+            <a href="#">
+                @if (!string.IsNullOrEmpty(item.Anh))
+                {
+                    <img src="@Url.Content("~/images/" + item.Anh)"
+                         alt="@item.TenSach" />
+                }
+            </a>
+
+            <h2>@item.TenSach</h2>
+
+            <div class="book-foot">
+                <span class="price">@item.Gia</span>
+                <button class="btn-buy">Thêm vào giỏ</button>
+            </div>
+        </div>
+    }
+</div>
