@@ -1,0 +1,32 @@
+﻿@model IEnumerable<NguyenDuyAn_241230651.Models.TaiSan>
+
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+@await Html.PartialAsync("NguyenDuyAn_MainContent", Model)
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+
+            $(document).on("click", ".category-link", function(e) {
+
+                e.preventDefault();
+
+                var id = $(this).data("id");
+
+                $.get("/Home/Filter/" + id, function(data) {
+
+                    $("#asset-list").html(data);
+
+                    $("#main-title").text(
+                        $(".category-link[data-id='" + id + "']").text().trim()
+                    );
+
+                });
+            });
+
+        });
+    </script>
+}

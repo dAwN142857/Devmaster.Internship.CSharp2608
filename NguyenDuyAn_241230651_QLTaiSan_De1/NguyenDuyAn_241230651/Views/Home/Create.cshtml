@@ -1,0 +1,46 @@
+﻿@model NguyenDuyAn_241230651.Models.TaiSan
+
+@{
+    ViewData["Title"] = "Thêm tài sản";
+}
+
+<h2>THÊM TÀI SẢN</h2>
+
+<form action="/Home/Create" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label>Loại tài sản</label>
+        <select name="MaLoai" class="form-control">
+            @foreach (var item in (IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewBag.MaLoai)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Tên tài sản</label>
+        <input name="TenTs" class="form-control" value="@Model?.TenTs" />
+    </div>
+
+    <div class="mb-3">
+        <label>Nguyên giá</label>
+        <input name="NguyenGia" class="form-control" value="@Model?.NguyenGia" />
+    </div>
+
+    <div class="mb-3">
+        <label>Ảnh</label>
+        <input name="Anh" class="form-control" value="@Model?.Anh" />
+    </div>
+
+    <div class="text-danger">
+        @Html.ValidationSummary()
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+
+    <a href="/Home/Index" class="btn btn-secondary">Quay lại</a>
+
+</form>
