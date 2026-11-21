@@ -1,0 +1,50 @@
+﻿@model NguyenDuyAn_241230651.Models.TaiSan
+
+@{
+    ViewData["Title"] = "Sửa tài sản";
+}
+
+<h2>SỬA THÔNG TIN TÀI SẢN</h2>
+
+<form asp-action="Edit" asp-route-id="@Model.MaTs" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="MaTs" />
+
+    <div class="mb-3">
+        <label>Loại tài sản</label>
+        <select asp-for="MaLoai" asp-items="ViewBag.MaLoai"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Tên tài sản</label>
+        <input asp-for="TenTs" class="form-control" />
+        <span asp-validation-for="TenTs" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Nguyên giá (triệu đồng)</label>
+        <input asp-for="NguyenGia" class="form-control" />
+        <span asp-validation-for="NguyenGia" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Ảnh</label>
+        <input asp-for="Anh" class="form-control" />
+        <span asp-validation-for="Anh" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+
+</form>
+<div asp-validation-summary="All" class="text-danger"></div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

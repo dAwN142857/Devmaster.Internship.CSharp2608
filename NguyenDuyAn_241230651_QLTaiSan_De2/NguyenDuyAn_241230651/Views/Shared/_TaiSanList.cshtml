@@ -1,0 +1,28 @@
+﻿@model IEnumerable<NguyenDuyAn_241230651.Models.TaiSan>
+
+<div class="grid">
+    @foreach (var item in Model)
+    {
+        <div class="asset-card">
+            <a href="#">
+                @if (!string.IsNullOrEmpty(item.Anh))
+                {
+                    <img src="~/images/@item.Anh" alt="@item.TenTs" />
+                }
+            </a>
+
+            <h2>@item.TenTs</h2>
+
+            <div class="asset-foot">
+                <span class="price">@item.NguyenGia tr</span>
+
+                <a asp-controller="Home"
+                   asp-action="Edit"
+                   asp-route-id="@item.MaTs"
+                   class="btn-buy">
+                    Sửa
+                </a>
+            </div>
+        </div>
+    }
+</div>

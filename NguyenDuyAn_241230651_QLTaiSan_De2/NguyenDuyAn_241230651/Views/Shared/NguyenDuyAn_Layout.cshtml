@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AssetHub - Nguyễn Duy An</title>
+
+    <link href="~/css/layout.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    @await Html.PartialAsync("NguyenDuyAn_Header")
+
+    @RenderBody()
+
+    @await Html.PartialAsync("NguyenDuyAn_Footer")
+
+    <div class="to-top">&uarr;</div>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
