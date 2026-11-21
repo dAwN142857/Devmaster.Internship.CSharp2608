@@ -1,0 +1,53 @@
+@model IEnumerable<LoaiHang>
+
+<div class="header">
+    <div class="wrap">
+
+        <div class="header_top">
+            <div class="logo">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/images/logo.png" alt="Logo" />
+                </a>
+            </div>
+
+            <div class="cart">
+                <p>Welcome to our Online Store!</p>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+        <div class="header_bottom">
+            <div class="menu">
+                <ul>
+                    @* Menu "Home" được thay bằng họ tên sinh viên *@
+                    <li class="active">
+                        <a href="@Url.Action("Index", "Home")">Nguyễn Duy An</a>
+                    </li>
+
+                    @* Các LoaiHang load từ database *@
+                    @foreach (var loai in Model)
+                    {
+                        <li>
+                            <a class="category-link"
+                               data-id="@loai.MaLoai"
+                               href="@Url.Action("Filter", "Home", new { id = loai.MaLoai })">
+                                @loai.TenLoai
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="search_box">
+                <form onsubmit="return false;">
+                    <input type="text" value="Search" />
+                    <input type="button" value="" />
+                </form>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+    </div>
+</div>

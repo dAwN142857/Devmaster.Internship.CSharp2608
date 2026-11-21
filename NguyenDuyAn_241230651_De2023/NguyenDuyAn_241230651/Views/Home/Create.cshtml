@@ -1,0 +1,44 @@
+@model HangHoa
+
+@{
+    ViewData["Title"] = "Thêm hàng hóa";
+}
+
+<h4>Nguyễn Duy An</h4>
+<h4>Thêm Hàng Hóa Mới</h4>
+<hr />
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" style="color:red"></div>
+
+    <div>
+        <label asp-for="MaLoai"></label><br />
+        <select asp-for="MaLoai" asp-items="(SelectList)ViewBag.DsLoai"></select>
+    </div>
+
+    <div>
+        <label asp-for="TenHang"></label><br />
+        <input asp-for="TenHang" />
+        <span asp-validation-for="TenHang" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="Gia"></label><br />
+        <input asp-for="Gia" />
+        <span asp-validation-for="Gia" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="Anh"></label><br />
+        <input asp-for="Anh" />
+        <span asp-validation-for="Anh" style="color:red"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Create" />
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

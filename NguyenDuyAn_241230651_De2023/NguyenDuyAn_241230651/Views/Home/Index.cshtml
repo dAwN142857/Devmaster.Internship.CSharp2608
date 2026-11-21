@@ -1,0 +1,10 @@
+@model IEnumerable<HangHoa>
+
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+@* Vùng này sẽ được thay nội dung bằng AJAX khi bấm menu LoaiHang *@
+<div id="mainContent">
+    <partial name="NguyenDuyAn_MainContent" model="Model" />
+</div>

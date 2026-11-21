@@ -1,0 +1,31 @@
+@{
+    // Danh sách LoaiHang do Controller nạp vào ViewBag, truyền xuống Header
+    var dsLoaiHang = ViewBag.LoaiHang as IEnumerable<LoaiHang> ?? new List<LoaiHang>();
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+<body>
+
+    <partial name="NguyenDuyAn_Header" model="dsLoaiHang" />
+
+    <div class="main">
+        <div class="wrap">
+            <div class="content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <partial name="NguyenDuyAn_Footer" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/NguyenDuyAn.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
